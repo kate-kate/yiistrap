@@ -870,7 +870,7 @@ class TbHtml extends CHtml // required in order to access the protected methods 
      */
     public static function dropDownList($name, $select, $data, $htmlOptions = array())
     {
-        $displaySize = TbArray::popValue('displaySize', $htmlOptions);
+        $displaySize = TbArray::popValue('displaySize', $htmlOptions, 1);
         $htmlOptions = self::normalizeInputOptions($htmlOptions);
         if (!empty($displaySize)) {
             $htmlOptions['size'] = $displaySize;
@@ -1642,7 +1642,7 @@ EOD;
      */
     public static function activeDropDownList($model, $attribute, $data, $htmlOptions = array())
     {
-        $displaySize = TbArray::popValue('displaySize', $htmlOptions);
+        $displaySize = TbArray::popValue('displaySize', $htmlOptions, 1);
         $htmlOptions = self::normalizeInputOptions($htmlOptions);
         if (!empty($displaySize)) {
             $htmlOptions['size'] = $displaySize;
