@@ -4325,4 +4325,23 @@ EOD;
             self::addCssClass('text-' . $align, $htmlOptions);
         }
     }
+
+    public static function activeFrontendLabel($model, $attribute, $htmlOptions = array())
+    {
+        $inputName = self::resolveName($model, $attribute);
+        if (isset($htmlOptions['for'])) {
+            $for = $htmlOptions['for'];
+            unset($htmlOptions['for']);
+        } else
+            $for = self::getIdByName($inputName);
+        if (isset($htmlOptions['label'])) {
+            if (($label = $htmlOptions['label']) === false)
+                return '';
+            unset($htmlOptions['label']);
+        } else
+            $label = $model->getFrontendLabel($attribute);
+        if ($model->hasErrors($attribute))
+            self::addErrorCss($htmlOptions);
+        return self::label($label, $for, $htmlOptions);
+    }
 }
